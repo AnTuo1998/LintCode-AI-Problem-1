@@ -3,7 +3,7 @@ from config import TRAIN_DATA_PATH,TEST_DATA_PATH,epoches
 from dataProcessing import dataSet
 from pytorch_model import Neuralnetwork
 import numpy as np
-
+import torch
 
 
 train_data = dataSet('train', TRAIN_DATA_PATH)
