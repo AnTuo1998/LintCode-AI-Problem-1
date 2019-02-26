@@ -1,7 +1,7 @@
 from config import TRAIN_DATA_PATH,TEST_DATA_PATH,epoches
 
 from dataProcessing import dataSet
-import torch
+from pytorch_model import Neuralnetwork
 import numpy as np
 
 
@@ -10,21 +10,9 @@ train_data = dataSet('train', TRAIN_DATA_PATH)
 test_data = dataSet("test", TEST_DATA_PATH)
 print(test_data.data.shape)
 
-class Neuralnetwork(torch.nn.Module):
-    def __init__(self, in_dim, n_hidden_1, n_hidden_2, out_dim):
-        super(Neuralnetwork, self).__init__()
-        self.layer1 = torch.nn.Linear(in_dim, n_hidden_1)
-        self.layer2 = torch.nn.Linear(n_hidden_1, n_hidden_2)
-        self.layer3 = torch.nn.Linear(n_hidden_2, out_dim)
+
  
-    def forward(self, x):
-        x = x.view(x.size(0), -1)
-        x = self.layer1(x)
-        x = self.layer2(x)
-        x = self.layer3(x)
-        return x
- 
-model = Neuralnetwork(32, 200, 100, 1)
+model = Neuralnetwork(32, 400, 200, 1)
  
 
 optimizer = torch.optim.Adam(list(model.parameters()), lr=0.0001, betas=(0.9, 0.999),weight_decay=0.004) 
